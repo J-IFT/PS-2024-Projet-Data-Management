@@ -9,6 +9,7 @@ Groupe : Juliette, Flavien & Loris
 ### 📌 Consignes du projet : 
 
 Pousse-toi, c'est ma base
+
 ﻿
 Contexte : Le jardin botanique "La Pousse d'Archimède" a besoin de vous. Les employés ont répertorié les différentes plantes situées dans le jardin avec leurs caractéristiques. Le nouveau propriétaire de ce jardin est ambitieux; il aimerait développer le nombre de plantes du jardin. Pour cela, il veut que toutes les informations soient stockées dans une base de données. Votre rôle sera d'aider La Pousse d'Archimède a créer une base de données efficace pour stocker leur données. Pour les aider dans la gestion du jardin, un dashboard serait apprécié avec des indicateurs clefs. De plus, aucun des employé n'a d'expérience en base de donnée. Apportez leur votre aide en suggérant des améliorations.
 
