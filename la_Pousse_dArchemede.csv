@@ -1,48 +1,47 @@
-﻿ ID ;  Nom          ; Famille        ; Origine        ; Hauteur (cm) ; Période de floraison ; Type de sol   ; Exposition   ; Date d'entrée ; Date de mort ; État de santé ; Type   
-1; Rose          ; Rosacées       ; Europe         ;0,6; Été                  ; Argileux      ; Ensoleillée  ; 2019-05-12     ;              ; Bon           ; Fleur  
-2; Orchidée      ; Orchidacées    ; Asie           ;0,3; Printemps            ; Humifère      ; Mi-ombragée  ; 2020-02-28     ;              ; Excellent     ; Fleur  
-3; Tulipe        ; Liliacées      ; Europe         ;0,4; Printemps            ; Argileux      ; Ensoleillée  ; 2021-04-17     ;              ; Bon           ; Fleur  
-4; Marguerite    ; Astéracées     ; Europe         ;0,5; Été                  ; Argileux      ; Ensoleillée  ; 2020-06-30     ;              ; Excellent     ; Fleur  
-5; Jonquille     ; Amaryllidacées ; Europe         ;0,25; Printemps            ; Sableux       ; Ensoleillée  ; 2020-07-19     ;              ; Bon           ; Fleur  
-6; Lotus         ; Nelumbonacées  ; Asie           ;1,5; Été                  ; Argileux      ; Mi-ombragée  ; 2021-10-05     ;              ; Excellent     ; Fleur  
-7; Lavande       ; Lamiacées      ; Europe         ;0,5; Été                  ; Sableux       ; Ensoleillée  ; 2019-04-02     ;              ; Bon           ; Fleur  
-8; Coquelicot    ; Papaveracées   ; Europe         ;0,3; Été                  ; Argileux      ; Ensoleillée  ; 2022-05-28     ;              ; Bon           ; Fleur  
-9; Iris          ; Iridacées      ; Europe         ;0,7; Printemps            ; Argileux      ; Ensoleillée  ; 2022-03-08     ;              ; Très bon      ; Fleur  
-10; Jasmin        ; Oléacées       ; Asie           ;2; Été                  ; Humifère      ; Ensoleillée  ; 2023-06-11     ;              ; Bon           ; Fleur  
-11; Pivoine       ; Paeoniacées    ; Asie           ;0,7; Printemps            ; Argileux      ; Ensoleillée  ; 2017-09-02     ;              ; Très bon      ; Fleur  
-12; Lys           ; Liliacées      ; Europe         ;0,9; Été                  ; Humifère      ; Mi-ombragée  ; 2018-08-20     ;              ; Excellent     ; Fleur  
-13; Héliotrope    ; Boraginacées   ; Amérique       ;0,4; Été                  ; Argileux      ; Mi-ombragée  ; 2019-07-14     ;              ; Bon           ; Fleur  
-14; Géranium      ; Géraniacées    ; Europe         ;0,5; Été                  ; Sableux       ; Ensoleillée  ; 2020-09-30     ;              ; Très bon      ; Fleur  
-15; Hortensia     ; Hydrangeacées  ; Asie           ;1,2; Été; Argileux      ; Mi-ombragée  ; 2021-07-06     ;              ; Excellent     ; Fleur  
-16; Dahlia        ; Astéracées     ; Amérique       ;0,8; Été                  ; Humifère      ; Ensoleillée  ; 2022-08-15     ;              ; Bon           ; Fleur  
-17; Narcisse      ; Amaryllidacées ; Europe         ;0,3; Printemps            ; Sableux       ; Ensoleillée  ; 2023-03-27     ;              ; Très bon      ; Fleur  
-18; Camélia       ; Théacées       ; Asie           ;1,5; Hiver                ; Humifère      ; Mi-ombragée  ; 2023-11-09     ;              ; Bon           ; Fleur  
-19; Œillet        ; Caryophyllacées; Europe         ;0,4; Été                  ; Argileux      ; Ensoleillée  ; 2018-12-05     ;              ; Très bon      ; Fleur  
-20; Pensée        ; Violacées      ; Europe         ;0,15; Printemps            ; Argileux      ; Mi-ombragée  ; 2022-01-18     ;              ; Bon           ; Fleur  
-1; Rhododendron   ; Éricacées        ; Asie           ;1,5; Printemps            ; Humifère      ; Mi-ombragée  ; 2019-06-12     ;              ; Bon           ; Arbuste 
-2; Forsythia      ; Oléacées         ; Asie           ;2; Printemps            ; Argileux      ; Ensoleillée  ; 2020-03-28     ;              ; Bon           ; Arbuste 
-3; Hortensia      ; Hydrangeacées    ; Asie           ;1,2; Été                  ; Argileux      ; Mi-ombragée  ; 2021-08-02     ;              ; Très bon      ; Arbuste 
-4; Lilas          ; Oléacées         ; Europe         ;2,5; Printemps            ; Argileux      ; Ensoleillée  ; 2020-05-19     ;              ; Bon           ; Arbuste 
-5; Azalée         ; Éricacées        ; Asie           ;1; Printemps            ; Humifère      ; Mi-ombragée  ; 2020-07-01     ;              ; Bon           ; Arbuste 
-6; Spirée         ; Rosacées         ; Asie           ;0,8; Été                  ; Argileux      ; Ensoleillée  ; 2021-09-14     ;              ; Excellent     ; Arbuste 
-7; Camélia        ; Théacées         ; Asie           ;1,5; Hiver                ; Humifère      ; Mi-ombragée  ; 2019-12-30     ;              ; Bon           ; Arbuste 
-8; Cotonéaster    ; Rosacées         ; Europe         ;0,6; Automne              ; Argileux      ; Ensoleillée  ; 2022-04-07     ;              ; Bon           ; Arbuste 
-9; Fusain         ; Célastracées     ; Europe         ;1,8; Automne              ; Argileux      ; Mi-ombragée  ; 2022-02-14     ;              ; Très bon      ; Arbuste 
-10; Weigélia       ; Caprifoliacées   ; Asie           ;1,5; Été                  ; Humifère      ; Ensoleillée  ; 2023-06-25     ;              ; Bon           ; Arbuste 
-11; Seringat       ; Hydrangeacées    ; Europe         ;2; Printemps            ; Argileux      ; Mi-ombragée  ; 2017-08-07     ;              ; Très bon      ; Arbuste 
-12; Photinia       ; Rosacées         ; Asie           ;3; Printemps            ; Argileux      ; Ensoleillée  ; 2018-07-15     ;              ; Excellent     ; Arbuste 
-13; Buis           ; Buxacées         ; Europe         ;1; -                    ; Argileux      ; Mi-ombragée  ; 2019-10-22     ;              ; Bon           ; Arbuste 
-14; Fusain d'Europe; Célastracées     ; Europe         ;1,5; Automne              ; Argileux      ; Ensoleillée  ; 2020-09-05     ;              ; Très bon      ; Arbuste 
-15; Mahonia        ; Berbéridacées    ; Amérique du Nord;1,2; Hiver                ; Argileux      ; Mi-ombragée  ; 2021-08-16     ;              ; Excellent     ; Arbuste 
-1; Chêne          ; Fagacées         ; Europe         ;25; Printemps            ; Argileux      ; Ensoleillée  ; 2005-07-12     ;              ; Bon           ; Arbre  
-2; Érable         ; Acéracées        ; Asie           ;20; Automne              ; Argileux      ; Mi-ombragée  ; 2010-03-28     ;              ; Très bon      ; Arbre  
-3; Pin            ; Pinacées         ; Europe         ;30; -                    ; Sableux       ; Ensoleillée  ; 2008-08-02     ;              ; Bon           ; Arbre  
-4; Sapin          ; Pinacées         ; Europe         ;35; Hiver                ; Argileux      ; Mi-ombragée  ; 2020-05-19     ;              ; Bon           ; Arbre  
-5; If             ; Cupressacées     ; Europe         ;15; -                    ; Argileux      ; Ensoleillée  ; 2015-07-01     ;              ; Très bon      ; Arbre  
-6; Platane        ; Platanacées      ; Europe         ;30; Printemps            ; Argileux      ; Mi-ombragée  ; 2017-09-14     ;              ; Bon           ; Arbre  
-7; Marronnier     ; Hippocastanacées ; Europe         ;25; Printemps            ; Argileux      ; Ensoleillée  ; 2012-12-30     ;              ; Très bon      ; Arbre  
-8; Cyprès         ; Cupressacées     ; Méditerranée   ;18; -                    ; Sableux       ; Ensoleillée  ; 2019-04-07     ;              ; Bon           ; Arbre  
-9; Hêtre          ; Fagacées         ; Europe         ;22; Printemps            ; Argileux      ; Mi-ombragée  ; 2022-02-14     ;              ; Très bon      ; Arbre  
-10; Peuplier       ; Salicacées       ; Europe         ;25; -                    ; Argileux      ; Ensoleillée  ; 2023-06-25     ;              ; Bon           ; Arbre  
-11; Épicéa         ; Pinacées         ; Europe         ;30; Hiver                ; Argileux      ; Mi-ombragée  ; 2016-08-07     ;              ; Très bon      ; Arbre  
-12; Frêne          ; Oléacées         ; Europe         ;20; Printemps            ; Argileux      ; Ensoleillée  ; 2018-07-15     ;              ; Bon           ; Arbre  
+﻿1; Rose          ; Rosacées       ; Europe         ;0,6; Été                  ; Argileux      ; Ensoleillée  ; 2019-05-12     ;              ; Bon           ; Fleur
+2; Orchidée      ; Orchidacées    ; Asie           ;0,3; Printemps            ; Humifère      ; Mi-ombragée  ; 2020-02-28     ;              ; Excellent     ; Fleur
+3; Tulipe        ; Liliacées      ; Europe         ;0,4; Printemps            ; Argileux      ; Ensoleillée  ; 2021-04-17     ;              ; Bon           ; Fleur
+4; Marguerite    ; Astéracées     ; Europe         ;0,5; Été                  ; Argileux      ; Ensoleillée  ; 2020-06-30     ;              ; Excellent     ; Fleur
+5; Jonquille     ; Amaryllidacées ; Europe         ;0,25; Printemps            ; Sableux       ; Ensoleillée  ; 2020-07-19     ;              ; Bon           ; Fleur
+6; Lotus         ; Nelumbonacées  ; Asie           ;1,5; Été                  ; Argileux      ; Mi-ombragée  ; 2021-10-05     ;              ; Excellent     ; Fleur
+7; Lavande       ; Lamiacées      ; Europe         ;0,5; Été                  ; Sableux       ; Ensoleillée  ; 2019-04-02     ;              ; Bon           ; Fleur
+8; Coquelicot    ; Papaveracées   ; Europe         ;0,3; Été                  ; Argileux      ; Ensoleillée  ; 2022-05-28     ;              ; Bon           ; Fleur
+9; Iris          ; Iridacées      ; Europe         ;0,7; Printemps            ; Argileux      ; Ensoleillée  ; 2022-03-08     ;              ; Très bon      ; Fleur
+10; Jasmin        ; Oléacées       ; Asie           ;2; Été                  ; Humifère      ; Ensoleillée  ; 2023-06-11     ;              ; Bon           ; Fleur
+11; Pivoine       ; Paeoniacées    ; Asie           ;0,7; Printemps            ; Argileux      ; Ensoleillée  ; 2017-09-02     ;              ; Très bon      ; Fleur
+12; Lys           ; Liliacées      ; Europe         ;0,9; Été                  ; Humifère      ; Mi-ombragée  ; 2018-08-20     ;              ; Excellent     ; Fleur
+13; Héliotrope    ; Boraginacées   ; Amérique       ;0,4; Été                  ; Argileux      ; Mi-ombragée  ; 2019-07-14     ;              ; Bon           ; Fleur
+14; Géranium      ; Géraniacées    ; Europe         ;0,5; Été                  ; Sableux       ; Ensoleillée  ; 2020-09-30     ;              ; Très bon      ; Fleur
+15; Hortensia     ; Hydrangeacées  ; Asie           ;1,2; Été; Argileux      ; Mi-ombragée  ; 2021-07-06     ;              ; Excellent     ; Fleur
+16; Dahlia        ; Astéracées     ; Amérique       ;0,8; Été                  ; Humifère      ; Ensoleillée  ; 2022-08-15     ;              ; Bon           ; Fleur
+17; Narcisse      ; Amaryllidacées ; Europe         ;0,3; Printemps            ; Sableux       ; Ensoleillée  ; 2023-03-27     ;              ; Très bon      ; Fleur
+18; Camélia       ; Théacées       ; Asie           ;1,5; Hiver                ; Humifère      ; Mi-ombragée  ; 2023-11-09     ;              ; Bon           ; Fleur
+19; Œillet        ; Caryophyllacées; Europe         ;0,4; Été                  ; Argileux      ; Ensoleillée  ; 2018-12-05     ;              ; Très bon      ; Fleur
+20; Pensée        ; Violacées      ; Europe         ;0,15; Printemps            ; Argileux      ; Mi-ombragée  ; 2022-01-18     ;              ; Bon           ; Fleur
+21; Rhododendron   ; Éricacées        ; Asie           ;1,5; Printemps            ; Humifère      ; Mi-ombragée  ; 2019-06-12     ;              ; Bon           ; Arbuste
+22; Forsythia      ; Oléacées         ; Asie           ;2; Printemps            ; Argileux      ; Ensoleillée  ; 2020-03-28     ;              ; Bon           ; Arbuste
+23; Hortensia      ; Hydrangeacées    ; Asie           ;1,2; Été                  ; Argileux      ; Mi-ombragée  ; 2021-08-02     ;              ; Très bon      ; Arbuste
+24; Lilas          ; Oléacées         ; Europe         ;2,5; Printemps            ; Argileux      ; Ensoleillée  ; 2020-05-19     ;              ; Bon           ; Arbuste
+25; Azalée         ; Éricacées        ; Asie           ;1; Printemps            ; Humifère      ; Mi-ombragée  ; 2020-07-01     ;              ; Bon           ; Arbuste
+26; Spirée         ; Rosacées         ; Asie           ;0,8; Été                  ; Argileux      ; Ensoleillée  ; 2021-09-14     ;              ; Excellent     ; Arbuste
+27; Camélia        ; Théacées         ; Asie           ;1,5; Hiver                ; Humifère      ; Mi-ombragée  ; 2019-12-30     ;              ; Bon           ; Arbuste
+28; Cotonéaster    ; Rosacées         ; Europe         ;0,6; Automne              ; Argileux      ; Ensoleillée  ; 2022-04-07     ;              ; Bon           ; Arbuste
+29; Fusain         ; Célastracées     ; Europe         ;1,8; Automne              ; Argileux      ; Mi-ombragée  ; 2022-02-14     ;              ; Très bon      ; Arbuste
+30; Weigélia       ; Caprifoliacées   ; Asie           ;1,5; Été                  ; Humifère      ; Ensoleillée  ; 2023-06-25     ;              ; Bon           ; Arbuste
+31; Seringat       ; Hydrangeacées    ; Europe         ;2; Printemps            ; Argileux      ; Mi-ombragée  ; 2017-08-07     ;              ; Très bon      ; Arbuste
+32; Photinia       ; Rosacées         ; Asie           ;3; Printemps            ; Argileux      ; Ensoleillée  ; 2018-07-15     ;              ; Excellent     ; Arbuste
+33; Buis           ; Buxacées         ; Europe         ;1; -                    ; Argileux      ; Mi-ombragée  ; 2019-10-22     ;              ; Bon           ; Arbuste
+34; Fusain d'Europe; Célastracées     ; Europe         ;1,5; Automne              ; Argileux      ; Ensoleillée  ; 2020-09-05     ;              ; Très bon      ; Arbuste
+35; Mahonia        ; Berbéridacées    ; Amérique du Nord;1,2; Hiver                ; Argileux      ; Mi-ombragée  ; 2021-08-16     ;              ; Excellent     ; Arbuste
+36; Chêne          ; Fagacées         ; Europe         ;25; Printemps            ; Argileux      ; Ensoleillée  ; 2005-07-12     ;              ; Bon           ; Arbre
+37; Érable         ; Acéracées        ; Asie           ;20; Automne              ; Argileux      ; Mi-ombragée  ; 2010-03-28     ;              ; Très bon      ; Arbre
+38; Pin            ; Pinacées         ; Europe         ;30; -                    ; Sableux       ; Ensoleillée  ; 2008-08-02     ;              ; Bon           ; Arbre
+39; Sapin          ; Pinacées         ; Europe         ;35; Hiver                ; Argileux      ; Mi-ombragée  ; 2020-05-19     ;              ; Bon           ; Arbre
+40; If             ; Cupressacées     ; Europe         ;15; -                    ; Argileux      ; Ensoleillée  ; 2015-07-01     ;              ; Très bon      ; Arbre
+41; Platane        ; Platanacées      ; Europe         ;30; Printemps            ; Argileux      ; Mi-ombragée  ; 2017-09-14     ;              ; Bon           ; Arbre
+42; Marronnier     ; Hippocastanacées ; Europe         ;25; Printemps            ; Argileux      ; Ensoleillée  ; 2012-12-30     ;              ; Très bon      ; Arbre
+43; Cyprès         ; Cupressacées     ; Méditerranée   ;18; -                    ; Sableux       ; Ensoleillée  ; 2019-04-07     ;              ; Bon           ; Arbre
+44; Hêtre          ; Fagacées         ; Europe         ;22; Printemps            ; Argileux      ; Mi-ombragée  ; 2022-02-14     ;              ; Très bon      ; Arbre
+45; Peuplier       ; Salicacées       ; Europe         ;25; -                    ; Argileux      ; Ensoleillée  ; 2023-06-25     ;              ; Bon           ; Arbre
+46; Épicéa         ; Pinacées         ; Europe         ;30; Hiver                ; Argileux      ; Mi-ombragée  ; 2016-08-07     ;              ; Très bon      ; Arbre
+47; Frêne          ; Oléacées         ; Europe         ;20; Printemps            ; Argileux      ; Ensoleillée  ; 2018-07-15     ;              ; Bon           ; Arbre

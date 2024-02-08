@@ -1,9 +1,12 @@
 from sqlalchemy import create_engine, Column, Integer, String, Date, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
+from sqlalchemy.orm import sessionmaker
+from datetime import datetime
+import csv
 
 # Création du moteur de base de données (ATTENTION MODIFIEZ BIEN LE PATH POUR QUE CA FONCTIONNE)
-engine = create_engine('sqlite:///C:/Users/julie\OneDrive - Ifag Paris/Documents/Data Management/projet/PS-2024-Projet-Data-Management/lapoussedarchimede.db', echo=True)
+engine = create_engine('sqlite:///C:/Users/julie/OneDrive - Ifag Paris/Documents/Data Management/projet/PS-2024-Projet-Data-Management/lapoussedarchimede.db', echo=True)
 Base = declarative_base()
 
 class Plante(Base):
@@ -13,15 +16,14 @@ class Plante(Base):
     nom = Column(String)
     hauteur = Column(Integer)
     date_entree = Column(Date)
-    date_mort = Column(Date)
-
-    famille_id = Column(Integer, ForeignKey('famille.id'))
-    origine_id = Column(Integer, ForeignKey('origine.id'))
-    periode_floraison_id = Column(Integer, ForeignKey('periode_floraison.id'))
-    type_sol_id = Column(Integer, ForeignKey('type_sol.id'))
-    exposition_id = Column(Integer, ForeignKey('exposition.id'))
-    etat_sante_id = Column(Integer, ForeignKey('etat_sante.id'))
-    type_id = Column(Integer, ForeignKey('type.id'))
+    date_mort = Column(Date, nullable=True)
+    famille_nom = Column(String, ForeignKey('famille.nom'))
+    origine_nom = Column(String, ForeignKey('origine.nom'))
+    periode_floraison_nom = Column(String, ForeignKey('periode_floraison.nom'))
+    type_sol_nom = Column(String, ForeignKey('type_sol.nom'))
+    exposition_nom = Column(String, ForeignKey('exposition.nom'))
+    etat_sante_nom = Column(String, ForeignKey('etat_sante.nom'))
+    type_nom = Column(String, ForeignKey('type.nom'))
 
     famille = relationship("Famille", back_populates="plantes")
     origine = relationship("Origine", back_populates="plantes")
@@ -89,3 +91,101 @@ class Type(Base):
 
 # Création des tables dans la base de données
 Base.metadata.create_all(engine)
+
+# Insérer des valeurs uniques dans chaque table
+Session = sessionmaker(bind=engine)
+session = Session()
+
+# Insérer des valeurs uniques dans la table Famille
+familles = ["Rosacées", "Orchidacées", "Liliacées", "Astéracées", "Amaryllidacées",
+            "Nelumbonacées", "Lamiacées", "Papaveracées", "Iridacées", "Oléacées",
+            "Paeoniacées", "Boraginacées", "Géraniacées", "Hydrangeacées", "Caryophyllacées",
+            "Violacées", "Éricacées", "Caprifoliacées", "Hippocastanacées", "Buxacées",
+            "Berbéridacées", "Fagacées", "Acéracées", "Pinacées", "Cupressacées",
+            "Platanacées", "Salicacées", "Buxacées", "Théacées"]
+for famille_nom in familles:
+    famille = Famille(nom=famille_nom)
+    session.add(famille)
+
+# Insérer des valeurs uniques dans la table Origine
+origines = ["Europe", "Asie", "Amérique", "Amérique du Nord", "Méditerranée"]
+for origine_nom in origines:
+    origine = Origine(nom=origine_nom)
+    session.add(origine)
+
+# Insérer des valeurs uniques dans la table PeriodeFloraison
+periodes_floraison = ["Été", "Printemps", "Hiver", "Automne"]
+for periode_nom in periodes_floraison:
+    periode = PeriodeFloraison(nom=periode_nom)
+    session.add(periode)
+
+# Insérer des valeurs uniques dans la table TypeSol
+types_sol = ["Argileux", "Humifère", "Sableux"]
+for type_sol_nom in types_sol:
+    type_sol = TypeSol(nom=type_sol_nom)
+    session.add(type_sol)
+
+# Insérer des valeurs uniques dans la table Exposition
+expositions = ["Ensoleillée", "Mi-ombragée"]
+for exposition_nom in expositions:
+    exposition = Exposition(nom=exposition_nom)
+    session.add(exposition)
+
+# Insérer des valeurs uniques dans la table EtatSante
+etats_sante = ["Bon", "Excellent", "Très bon"]
+for etat_sante_nom in etats_sante:
+    etat_sante = EtatSante(nom=etat_sante_nom)
+    session.add(etat_sante)
+
+# Insérer des valeurs uniques dans la table Type
+types = ["Fleur", "Arbuste", "Arbre"]
+for type_nom in types:
+    type_ = Type(nom=type_nom)
+    session.add(type_)
+
+# Chemin vers le fichier CSV (Assurez-vous de remplacer le chemin du fichier)
+fichier_csv = "la_Pousse_dArchemede.csv"
+
+# Lecture du fichier CSV et insertion des plantes dans la base de données
+with open(fichier_csv, newline='', encoding='utf-8') as csvfile:
+    reader = csv.reader(csvfile, delimiter=';')
+    next(reader)  # Ignorer l'en-tête
+    for row in reader:
+        nom = row[1].strip()
+        hauteur = float(row[4].replace(',', '.'))
+        date_entree = datetime.strptime(row[8].strip(), '%Y-%m-%d').date()
+        famille_nom = row[2].strip()
+        origine_nom = row[3].strip()
+        periode_floraison_nom = row[5].strip()
+        type_sol_nom = row[6].strip()
+        exposition_nom = row[7].strip()
+        etat_sante_nom = row[10].strip()
+        type_nom = row[11].strip()
+
+        plante = Plante(nom=nom, hauteur=hauteur, date_entree=date_entree,
+                        famille_nom=famille_nom, origine_nom=origine_nom,
+                        periode_floraison_nom=periode_floraison_nom,
+                        type_sol_nom=type_sol_nom, exposition_nom=exposition_nom,
+                        etat_sante_nom=etat_sante_nom, type_nom=type_nom)
+
+        # Ajoutez la plante à la session et committez
+        with engine.connect() as connection:
+            with connection.begin():
+                connection.execute(plante.__table__.insert(), {
+                    'nom': plante.nom,
+                    'hauteur': plante.hauteur,
+                    'date_entree': plante.date_entree,
+                    'famille_nom': plante.famille_nom,
+                    'origine_nom': plante.origine_nom,
+                    'periode_floraison_nom': plante.periode_floraison_nom,
+                    'type_sol_nom': plante.type_sol_nom,
+                    'exposition_nom': plante.exposition_nom,
+                    'etat_sante_nom': plante.etat_sante_nom,
+                    'type_nom': plante.type_nom
+                })
+
+# Commit des changements
+session.commit()
+
+# Fermeture de la session
+session.close()
