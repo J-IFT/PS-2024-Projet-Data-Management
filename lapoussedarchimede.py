@@ -154,6 +154,9 @@ with open(fichier_csv, newline='', encoding='utf-8') as csvfile:
         nom = row[1].strip()
         hauteur = float(row[4].replace(',', '.'))
         date_entree = datetime.strptime(row[8].strip(), '%Y-%m-%d').date()
+        date_mort = None
+        if row[9].strip():
+            date_mort = datetime.strptime(row[9].strip(), '%Y-%m-%d').date()
         famille_nom = row[2].strip()
         origine_nom = row[3].strip()
         periode_floraison_nom = row[5].strip()
