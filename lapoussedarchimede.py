@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Column, Integer, String, Date, ForeignKey
+from sqlalchemy import create_engine, Column, event, Integer, String, Date, ForeignKey, text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy.orm import sessionmaker
@@ -6,7 +6,7 @@ from datetime import datetime
 import csv
 
 # Création du moteur de base de données (ATTENTION MODIFIEZ BIEN LE PATH POUR QUE CA FONCTIONNE)
-engine = create_engine('sqlite:///C:/Users/julie/OneDrive - Ifag Paris/Documents/Data Management/projet/PS-2024-Projet-Data-Management/lapoussedarchimede.db', echo=True)
+engine = create_engine('sqlite:////home/norsys/WebstormProjects/PS-2024-Projet-Data-Management/lapoussedarchimede.db', echo=True)
 Base = declarative_base()
 
 class Plante(Base):
@@ -78,6 +78,7 @@ class EtatSante(Base):
 
     id = Column(Integer, primary_key=True)
     nom = Column(String)
+    quantite = Column(Integer, default=0)
 
     plantes = relationship("Plante", back_populates="etat_sante")
 
@@ -88,6 +89,54 @@ class Type(Base):
     nom = Column(String)
 
     plantes = relationship("Plante", back_populates="type")
+
+
+# Création des triggers pour la quantite dans etat_sante
+# Un seul type d'event est gérable à la fois avec SQLite, il faut créer un trigger pour CREATE, UPDATE, DELETE
+@event.listens_for(Plante.__table__, "after_create")
+def maj_etat_sante_quantite_create(target, connection, **kw):
+    connection.execute(text("""\
+        CREATE TRIGGER IF NOT EXISTS maj_etat_sante_quantite_create
+        AFTER INSERT ON plante
+        FOR EACH ROW
+        BEGIN
+            UPDATE etat_sante
+                SET quantite = quantite +  1
+                WHERE etat_sante.nom = new.etat_sante_nom;
+        END;
+    """))
+
+
+@event.listens_for(Plante.__table__, "after_create")
+def maj_etat_sante_quantite_update(target, connection, **kw):
+    connection.execute(text("""\
+        CREATE TRIGGER IF NOT EXISTS maj_etat_sante_quantite_update
+        AFTER UPDATE OF etat_sante_nom ON plante
+        FOR EACH ROW
+        BEGIN
+            UPDATE etat_sante
+                SET quantite = quantite +  1
+                WHERE etat_sante.nom = new.etat_sante_nom;
+            UPDATE etat_sante
+                SET quantite = quantite -  1
+                WHERE etat_sante.nom = old.etat_sante_nom;
+        END;
+    """))
+
+
+@event.listens_for(Plante.__table__, "after_create")
+def maj_etat_sante_quantite_delete(target, connection, **kw):
+    connection.execute(text("""\
+        CREATE TRIGGER IF NOT EXISTS maj_etat_sante_quantite_delete
+        AFTER DELETE ON plante
+        FOR EACH ROW
+        BEGIN
+            UPDATE etat_sante
+                SET quantite = quantite -  1
+                WHERE etat_sante.nom = old.etat_sante_nom;
+        END;
+    """))
+
 
 # Création des tables dans la base de données
 Base.metadata.create_all(engine)
