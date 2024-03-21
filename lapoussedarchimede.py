@@ -153,6 +153,15 @@ Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)
 session = Session()
 
+# Insérer des valeurs uniques dans la table EtatSante
+etats_sante = ["Bon", "Excellent", "Très bon"]
+for etat_sante_nom in etats_sante:
+    etat_sante = EtatSante(nom=etat_sante_nom)
+    session.add(etat_sante)
+
+# Commit de la table etat_sante pour activer les triggers avant le reste
+session.commit()
+
 # Insérer des valeurs uniques dans la table Famille
 familles = ["Rosacées", "Orchidacées", "Liliacées", "Astéracées", "Amaryllidacées",
             "Nelumbonacées", "Lamiacées", "Papaveracées", "Iridacées", "Oléacées",
@@ -187,12 +196,6 @@ expositions = ["Ensoleillée", "Mi-ombragée"]
 for exposition_nom in expositions:
     exposition = Exposition(nom=exposition_nom)
     session.add(exposition)
-
-# Insérer des valeurs uniques dans la table EtatSante
-etats_sante = ["Bon", "Excellent", "Très bon"]
-for etat_sante_nom in etats_sante:
-    etat_sante = EtatSante(nom=etat_sante_nom)
-    session.add(etat_sante)
 
 # Insérer des valeurs uniques dans la table Type
 types = ["Fleur", "Arbuste", "Arbre"]
@@ -242,7 +245,7 @@ with open(fichier_csv, newline='', encoding='utf-8') as csvfile:
                     'exposition_nom': plante.exposition_nom,
                     'etat_sante_nom': plante.etat_sante_nom,
                     'type_nom': plante.type_nom
-                })   
+                })
 
 # Affichage des menus
 continuer = True
