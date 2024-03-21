@@ -5,12 +5,14 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import MetaData
 from sqlalchemy import func
 from datetime import datetime
+from tabulate import tabulate
 import csv
 
 # Création du moteur de base de données (ATTENTION MODIFIEZ BIEN LE PATH POUR QUE CA FONCTIONNE)
-engine = create_engine(
-    'sqlite:///C:/Users/julie/OneDrive - Ifag Paris/Documents/Data Management/projet/PS-2024-Projet-Data-Management/lapoussedarchimede.db',
-    echo=True)
+url = 'sqlite:////home/norsys/WebstormProjects/PS-2024-Projet-Data-Management/lapoussedarchimede.db';
+url_flavien = 'sqlite:///D:/Documents/Ecole/EPSI/Master/COURS/Data Management - Faure Vincent/PS-2024-Projet-Data-Management/lapoussedarchimede.db'
+
+engine = create_engine(url_flavien, echo=True)
 Base = declarative_base()
 
 
@@ -351,23 +353,38 @@ while continuer:
     elif choix == "2":
         while continuer_s:
             print("-----------MENU-----------")
-            print("1. Afficher le nombre de plantes par famille")
-            print("2. Afficher le nombre de plantes par espèce")
+            print("1. Informations général des plantes")
+            print("2. Nombre de plantes par famille")
+            print("3. Nombre de plantes par état de santé")
+            print("4. Nombre de plantes par origine et par type de sol")
             print("0. Quitter")
             print("--------------------------")
             choix_s = input("Choisissez une option : ")
             if choix_s == "1":
-                nombre_plantes_par_famille = session.query(Plante.famille_nom, func.count(Plante.nom)).group_by(
-                    Plante.famille_nom).order_by(func.count(Plante.nom).desc()).all()
-                print("Nombre de plantes par famille (ordonné par nombre de plantes) :")
-                for famille, nombre in nombre_plantes_par_famille:
-                    print(f"{famille}: {nombre}")
+                plantes_info = session.query(Plante.nom, Plante.date_entree, Plante.famille_nom, Plante.hauteur,
+                             EtatSante.nom.label('sante'), Origine.nom.label('origine'),
+                             PeriodeFloraison.nom.label('periode_floraison'), TypeSol.nom.label('type_sol'),
+                             Exposition.nom.label('exposition')).\
+                             join(EtatSante).join(Origine).join(PeriodeFloraison).\
+                             join(TypeSol).join(Exposition).\
+                             order_by(Plante.date_entree).all()
+                tableau_plantes_info = tabulate(plantes_info, headers=["Nom", "Date d'entrée", "Famille", "Hauteur", "Santé",
+                                                       "Origine", "Période de floraison", "Type de sol",
+                                                       "Exposition"], tablefmt="pretty")
+                print(tableau_plantes_info)
             elif choix_s == "2":
-                nombre_plantes_par_espece = session.query(Plante.nom, func.count(Plante.nom)).group_by(Plante.nom).order_by(
-                    func.count(Plante.nom).desc()).all()
-                print("Nombre de plantes par espèce (ordonné par nombre de plantes) :")
-                for espece, nombre in nombre_plantes_par_espece:
-                    print(f"{espece}: {nombre}")
+                nombre_plantes_par_famille = session.query(Plante.famille_nom, func.count(Plante.nom)).group_by(Plante.famille_nom).order_by(func.count(Plante.nom).desc()).all()
+                tableau_plantes_info = tabulate(nombre_plantes_par_famille, headers=["Familles", "Nombre de plantes"], tablefmt="pretty")
+                print(tableau_plantes_info)
+            elif choix_s == "3":
+                plantes_par_etat_sante = session.query(EtatSante.nom, func.count(Plante.nom)).group_by(EtatSante.nom).join(Plante).all()
+                tableau_plantes_info = tabulate(plantes_par_etat_sante, headers=["Etat de santé", "Nombre de plantes"], tablefmt="pretty")
+                print(tableau_plantes_info)
+            elif choix_s == "4":
+                nombre_plantes_par_type_sol_origine = session.query(Origine.nom, TypeSol.nom, func.count(Plante.id)).select_from(Origine).\
+                    join(Plante).join(TypeSol).group_by(Origine.nom, TypeSol.nom).all()
+                tableau_plantes_info = tabulate(nombre_plantes_par_type_sol_origine, headers=["Origine", "Type de sol", "Nombre de plantes"], tablefmt="pretty")
+                print(tableau_plantes_info)
             elif choix_s == "0":
                 continuer_s = False
             else:
