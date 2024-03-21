@@ -2,11 +2,16 @@ from sqlalchemy import create_engine, Column, event, Integer, String, Date, Fore
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy import MetaData
+from sqlalchemy import func
 from datetime import datetime
 import csv
 
 # Création du moteur de base de données (ATTENTION MODIFIEZ BIEN LE PATH POUR QUE CA FONCTIONNE)
-engine = create_engine('sqlite:////home/norsys/WebstormProjects/PS-2024-Projet-Data-Management/lapoussedarchimede.db', echo=True)
+url = 'sqlite:////home/norsys/WebstormProjects/PS-2024-Projet-Data-Management/lapoussedarchimede.db';
+url_flavien = 'sqlite:///D:/Documents/Ecole/EPSI/Master/COURS/Data Management - Faure Vincent/PS-2024-Projet-Data-Management/lapoussedarchimede.db'
+
+engine = create_engine(url, echo=True)
 Base = declarative_base()
 
 class Plante(Base):
@@ -136,7 +141,10 @@ def maj_etat_sante_quantite_delete(target, connection, **kw):
                 WHERE etat_sante.nom = old.etat_sante_nom;
         END;
     """))
-
+# Suppression des données pré-existante en base
+metadata = MetaData()
+metadata.reflect(bind=engine)
+metadata.drop_all(bind=engine)
 
 # Création des tables dans la base de données
 Base.metadata.create_all(engine)
@@ -234,7 +242,60 @@ with open(fichier_csv, newline='', encoding='utf-8') as csvfile:
                     'exposition_nom': plante.exposition_nom,
                     'etat_sante_nom': plante.etat_sante_nom,
                     'type_nom': plante.type_nom
-                })
+                })   
+
+# Affichage des menus
+continuer = True
+while continuer:
+    print("-----------MENU-----------")
+    print("1. Ajouter des plantes")
+    print("2. Afficher des plantes")
+    print("0. Quitter")
+    print("--------------------------")
+    choix = input("Choisissez une option : ")
+
+    continuer_s = True
+    if choix == "1":
+        while continuer_s:
+            print("-----------MENU-----------")
+            print("1. ...")
+            print("2. ...")
+            print("0. Quitter")
+            print("--------------------------")
+            choix_s = input("Choisissez une option : ")
+            if choix_s == "1":
+                print('inserts')
+                # Ici met tes inserts
+            elif choix_s == "0":
+                continuer_s = False
+            else:
+                print("Choix invalide. Veuillez choisir une option valide.")
+    elif choix == "2":
+        while continuer_s:
+            print("-----------MENU-----------")
+            print("1. Afficher le nombre de plantes par famille")
+            print("2. Afficher le nombre de plantes par espèce")
+            print("0. Quitter")
+            print("--------------------------")
+            choix_s = input("Choisissez une option : ")
+            if choix_s == "1":
+                nombre_plantes_par_famille = session.query(Plante.famille_nom, func.count(Plante.nom)).group_by(Plante.famille_nom).order_by(func.count(Plante.nom).desc()).all()
+                print("Nombre de plantes par famille (ordonné par nombre de plantes) :")
+                for famille, nombre in nombre_plantes_par_famille:
+                    print(f"{famille}: {nombre}")
+            elif choix_s == "2":
+                nombre_plantes_par_espece = session.query(Plante.nom, func.count(Plante.nom)).group_by(Plante.nom).order_by(func.count(Plante.nom).desc()).all()
+                print("Nombre de plantes par espèce (ordonné par nombre de plantes) :")
+                for espece, nombre in nombre_plantes_par_espece:
+                    print(f"{espece}: {nombre}")
+            elif choix_s == "0":
+                continuer_s = False
+            else:
+                print("Choix invalide. Veuillez choisir une option valide.")
+    elif choix == "0":
+        continuer = False
+    else:
+        print("Choix invalide. Veuillez choisir une option valide.")
 
 # Commit des changements
 session.commit()
