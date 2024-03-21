@@ -6,7 +6,7 @@ from datetime import datetime
 import csv
 
 # Création du moteur de base de données (ATTENTION MODIFIEZ BIEN LE PATH POUR QUE CA FONCTIONNE)
-engine = create_engine('sqlite:////home/norsys/WebstormProjects/PS-2024-Projet-Data-Management/lapoussedarchimede.db', echo=True)
+engine = create_engine('sqlite:///C:/Users/Marvin/PycharmProjects/PS-2024-Projet-Data-Management/lapoussedarchimede.db', echo=True)
 Base = declarative_base()
 
 class Plante(Base):
@@ -145,6 +145,15 @@ Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)
 session = Session()
 
+# Insérer des valeurs uniques dans la table EtatSante
+etats_sante = ["Bon", "Excellent", "Très bon"]
+for etat_sante_nom in etats_sante:
+    etat_sante = EtatSante(nom=etat_sante_nom)
+    session.add(etat_sante)
+
+# Commit de la table etat_sante pour activer les triggers avant le reste
+session.commit()
+
 # Insérer des valeurs uniques dans la table Famille
 familles = ["Rosacées", "Orchidacées", "Liliacées", "Astéracées", "Amaryllidacées",
             "Nelumbonacées", "Lamiacées", "Papaveracées", "Iridacées", "Oléacées",
@@ -179,12 +188,6 @@ expositions = ["Ensoleillée", "Mi-ombragée"]
 for exposition_nom in expositions:
     exposition = Exposition(nom=exposition_nom)
     session.add(exposition)
-
-# Insérer des valeurs uniques dans la table EtatSante
-etats_sante = ["Bon", "Excellent", "Très bon"]
-for etat_sante_nom in etats_sante:
-    etat_sante = EtatSante(nom=etat_sante_nom)
-    session.add(etat_sante)
 
 # Insérer des valeurs uniques dans la table Type
 types = ["Fleur", "Arbuste", "Arbre"]
