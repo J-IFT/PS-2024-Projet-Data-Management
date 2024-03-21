@@ -4,7 +4,6 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.orm import sessionmaker
 from datetime import datetime
 import csv
-import argparse
 
 # Création du moteur de base de données (ATTENTION MODIFIEZ BIEN LE PATH POUR QUE CA FONCTIONNE)
 engine = create_engine('sqlite:///C:/Users/julie/OneDrive - Ifag Paris/Documents/Data Management/projet/PS-2024-Projet-Data-Management/lapoussedarchimede.db', echo=True)
