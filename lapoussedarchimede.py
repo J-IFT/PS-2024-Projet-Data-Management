@@ -8,10 +8,7 @@ from datetime import datetime
 import csv
 
 # Création du moteur de base de données (ATTENTION MODIFIEZ BIEN LE PATH POUR QUE CA FONCTIONNE)
-url = 'sqlite:////home/norsys/WebstormProjects/PS-2024-Projet-Data-Management/lapoussedarchimede.db';
-url_flavien = 'sqlite:///D:/Documents/Ecole/EPSI/Master/COURS/Data Management - Faure Vincent/PS-2024-Projet-Data-Management/lapoussedarchimede.db'
-
-engine = create_engine(url, echo=True)
+engine = create_engine('sqlite:///C:/Users/julie/OneDrive - Ifag Paris/Documents/Data Management/projet/PS-2024-Projet-Data-Management/lapoussedarchimede.db', echo=True)
 Base = declarative_base()
 
 class Plante(Base):
@@ -299,6 +296,88 @@ while continuer:
         continuer = False
     else:
         print("Choix invalide. Veuillez choisir une option valide.")
+
+# Menu CRUD
+while True:
+    print("\nMenu:")
+    print("1. Ajouter une plante")
+    print("2. Lire les plantes")
+    print("3. Modifier une plante")
+    print("4. Supprimer une plante")
+    print("5. Quitter")
+
+    choix = input("Entrez le numéro de l'opération que vous souhaitez effectuer : ")
+
+    if choix == "1":
+        # Code pour ajouter une plante
+        nom = input("Entrez le nom de la plante : ")
+        hauteur = float(input("Entrez la hauteur de la plante : "))
+        date_entree = datetime.strptime(input("Entrez la date d'entrée de la plante (YYYY-MM-DD) : "), '%Y-%m-%d').date()
+        date_mort = datetime.strptime(input("Entrez la date de mort de la plante (YYYY-MM-DD) : "), '%Y-%m-%d').date()
+        famille_nom = input("Entrez le nom de la famille de la plante : ")
+        origine_nom = input("Entrez le nom de l'origine de la plante : ")
+        periode_floraison_nom = input("Entrez le nom de la période de floraison de la plante : ")
+        type_sol_nom = input("Entrez le nom du type de sol de la plante : ")
+        exposition_nom = input("Entrez le nom de l'exposition de la plante : ")
+        etat_sante_nom = input("Entrez le nom de l'état de santé de la plante : ")
+        type_nom = input("Entrez le nom du type de la plante : ")
+        plante = Plante(nom=nom, hauteur=hauteur, date_entree=date_entree, date_mort=date_mort,
+                        famille_nom=famille_nom, origine_nom=origine_nom, periode_floraison_nom=periode_floraison_nom,
+                        type_sol_nom=type_sol_nom, exposition_nom=exposition_nom, etat_sante_nom=etat_sante_nom,
+                        type_nom=type_nom)
+        session.add(plante)
+        session.commit()
+        print("Plante ajoutée avec succès !")
+    elif choix == "2":
+        # Code pour lire les plantes
+        print("Liste des plantes :")
+        for plante in session.query(Plante).all():
+            print(f"ID : {plante.id}, Nom : {plante.nom}, Hauteur : {plante.hauteur}, Date d'entrée : {plante.date_entree}")
+    elif choix == "3":
+        # Code pour modifier une plante
+        nom = input("Entrez le nom de la plante à modifier : ")
+        hauteur = float(input("Entrez la nouvelle hauteur de la plante : "))
+        date_entree = datetime.strptime(input("Entrez la nouvelle date d'entrée de la plante (YYYY-MM-DD) : "), '%Y-%m-%d').date()
+        date_mort = datetime.strptime(input("Entrez la nouvelle date de mort de la plante (YYYY-MM-DD) : "), '%Y-%m-%d').date()
+        famille_nom = input("Entrez le nouveau nom de la famille de la plante : ")
+        origine_nom = input("Entrez le nouveau nom de l'origine de la plante : ")
+        periode_floraison_nom = input("Entrez le nouveau nom de la période de floraison de la plante : ")
+        type_sol_nom = input("Entrez le nouveau nom du type de sol de la plante : ")
+        exposition_nom = input("Entrez le nouveau nom de l'exposition de la plante : ")
+        etat_sante_nom = input("Entrez le nouveau nom de l'état de santé de la plante : ")
+        type_nom = input("Entrez le nouveau nom du type de la plante : ")
+        plante = session.query(Plante).filter_by(nom=nom).first()
+        if plante:
+            plante.hauteur = hauteur
+            plante.date_entree = date_entree
+            plante.date_mort = date_mort
+            plante.famille_nom = famille_nom
+            plante.origine_nom = origine_nom
+            plante.periode_floraison_nom = periode_floraison_nom
+            plante.type_sol_nom = type_sol_nom
+            plante.exposition_nom = exposition_nom
+            plante.etat_sante_nom = etat_sante_nom
+            plante.type_nom = type_nom
+            session.commit()
+            print("Plante modifiée avec succès !")
+        else:
+            print("Plante non trouvée.")
+    elif choix == "4":
+        # Code pour supprimer une plante
+        nom = input("Entrez le nom de la plante à supprimer : ")
+        plante = session.query(Plante).filter_by(nom=nom).first()
+        if plante:
+            session.delete(plante)
+            session.commit()
+            print("Plante supprimée avec succès !")
+        else:
+            print("Plante non trouvée.")
+    elif choix == "5":
+        # Quitter le menu
+        print("Merci d'avoir utilisé le programme. Au revoir !")
+        break
+    else:
+        print("Choix invalide. Veuillez entrer un numéro valide.")
 
 # Commit des changements
 session.commit()
